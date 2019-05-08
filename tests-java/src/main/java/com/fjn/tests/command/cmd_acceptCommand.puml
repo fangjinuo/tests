@@ -1,0 +1,22 @@
+@startuml
+
+title "CommandExecutor#acceptCommand"
+
+participant Client
+Client -> CommandExecutor : acceptCommand(command)
+activate CommandExecutor
+    CommandExecutor->CommandExecutorFactory:<<get commandhandler>>
+    activate CommandHandlerFactory
+        CommandHandlerFactory ->CommandHandlerFactory: createHandler
+        CommandExecutor <-- CommandHandlerFactory :<<CommandHandler>>
+    deactivate CommandHandlerFactory
+
+    CommandExecutor -> CommandHandler:<<setCommand>>
+    CommandExecutor -> CommandHandler:<<setContext>>
+
+    CommandExecutor -> CommandExecutor:<<registry>>
+    activate CommandExecutor
+        CommandExecutor->ThreadPoolExecutor:submit
+    deactivate CommandExecutor
+deactivate CommandExecutor
+@enduml
