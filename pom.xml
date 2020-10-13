@@ -13,7 +13,7 @@
         <module>tests-flink</module>
         <module>tests-spark</module>
         <module>tests-yaml</module>
-        <module>tests-antlr</module>
+        <module>tests-antlr4</module>
     </modules>
     <properties>
         <source.jdk.version>1.8</source.jdk.version>
